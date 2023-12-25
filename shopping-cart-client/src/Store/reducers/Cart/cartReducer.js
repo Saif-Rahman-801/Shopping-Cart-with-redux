@@ -25,17 +25,25 @@ export const cartReducer = (state = [], action) => {
             ...state,
             {
               ...action.payload,
+              quantity: 1,
             },
           ];
     }
     case REMOVE_FROM_CART: {
-      return;
-    }
-    case CLEAR_CART: {
-      return;
+      // delete from the db
+      return state.filter((item) => item.id !== action.payload.id);
     }
     case MODIFY_QUANTITY: {
-      return;
+        // update quantity again
+      return state.map((item) => {
+        if (item.id === action.payload.id) {
+          item.quantity === action.payload.quantity;
+        }
+      });
+    }
+    case CLEAR_CART: {
+        // clear the whole cart from the db
+      return []
     }
 
     default: {
