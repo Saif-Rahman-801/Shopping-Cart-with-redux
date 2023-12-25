@@ -33,6 +33,7 @@ async function run() {
     await client.connect();
     const database = client.db("CartDB");
     const cartCollections = database.collection("cart");
+    const productsCollections = database.collection("products");
 
     app.post("/todos", async (req, res) => {
         const user = req.body;
@@ -40,8 +41,8 @@ async function run() {
         res.send(result);
     });
 
-    app.get("/todos", async (req, res) => {
-        const cursor = todoCollections.find();
+    app.get("/products", async (req, res) => {
+        const cursor = productsCollections.find();
         const result = await cursor.toArray();
         res.send(result);
       });
