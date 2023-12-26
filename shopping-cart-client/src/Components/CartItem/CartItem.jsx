@@ -84,7 +84,7 @@ const CartItem = ({ item }) => {
           onClick={() =>
             dispatch({
               type: REMOVE_FROM_CART,
-              payload: { id: item._id },
+              payload: { id: item.id },
             })
           }
         >

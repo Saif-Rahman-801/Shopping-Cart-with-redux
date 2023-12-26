@@ -5,7 +5,8 @@ import {
   REMOVE_FROM_CART,
 } from "../../action-types/cart";
 
-export const cartReducer = (state = [], action) => {
+export const cartReducer = (state=[], action) => {
+  // const axios = useAxiosPublic();
   switch (action.type) {
     case ADD_TO_CART: {
       // Checking if the product is already added in the cart
@@ -34,7 +35,7 @@ export const cartReducer = (state = [], action) => {
       return state.filter((item) => item.id !== action.payload.id);
     }
     case MODIFY_QUANTITY: {
-        // update quantity again
+      // update quantity again
       return state.map((item) => {
         if (item.id === action.payload.id) {
           item.quantity === action.payload.quantity;
@@ -42,8 +43,8 @@ export const cartReducer = (state = [], action) => {
       });
     }
     case CLEAR_CART: {
-        // clear the whole cart from the db
-      return []
+      // clear the whole cart from the db
+      return [];
     }
 
     default: {
