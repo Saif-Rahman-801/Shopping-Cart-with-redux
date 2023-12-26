@@ -21,16 +21,18 @@ const CartItem = ({ item }) => {
           <button
             className="bg-blue-500 text-white px-2 py-1"
             onClick={() => {
-              setQuantity((prevState) => {
-                dispatch({
-                  type: MODIFY_QUANTITY,
-                  payload: {
-                    id: item._id,
-                    quantity: prevState - 1,
-                  },
+              if (quantity >= 1) {
+                setQuantity((prevState) => {
+                  dispatch({
+                    type: MODIFY_QUANTITY,
+                    payload: {
+                      id: item._id,
+                      quantity: prevState - 1,
+                    },
+                  });
+                  return prevState - 1;
                 });
-                return prevState - 1;
-              });
+              }
             }}
           >
             -
@@ -55,16 +57,18 @@ const CartItem = ({ item }) => {
           <button
             className="bg-blue-500 text-white px-2 py-1"
             onClick={() => {
-              setQuantity((prevState) => {
-                dispatch({
-                  type: MODIFY_QUANTITY,
-                  payload: {
-                    id: item._id,
-                    quantity: prevState + 1,
-                  },
+              if (quantity >= 1) {
+                setQuantity((prevState) => {
+                  dispatch({
+                    type: MODIFY_QUANTITY,
+                    payload: {
+                      id: item._id,
+                      quantity: prevState + 1,
+                    },
+                  });
+                  return prevState + 1;
                 });
-                return prevState + 1;
-              });
+              }
             }}
           >
             +
@@ -72,7 +76,7 @@ const CartItem = ({ item }) => {
         </div>
       </td>
       <td className="border px-4 py-2">
-        ${(item.price * item.quantity).toFixed(2)}
+        ${(item.price * item.quantity)}
       </td>
       <td className="border px-4 py-2">
         <button

@@ -6,6 +6,10 @@ import CartItem from "../../Components/CartItem/CartItem";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  let totalAmount = 0;
+  cart.forEach(item => {
+    totalAmount += item.price * item.quantity
+  });
 
   return (
     <div className="container mx-auto mt-8">
@@ -30,7 +34,7 @@ const Cart = () => {
 
       <div className="mt-4 flex justify-end">
         <div className="text-xl font-bold">
-          Total: $0.00 {/* You can replace this with your logic */}
+          Total: {totalAmount} {/* You can replace this with your logic */}
         </div>
       </div>
 
