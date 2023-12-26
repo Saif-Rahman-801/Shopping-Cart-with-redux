@@ -1,9 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useDispatch } from "react-redux";
+import { ADD_TO_CART } from "../../Store/action-types/cart";
 
 const ProductCard = () => {
   const axiosPublic = useAxiosPublic();
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axiosPublic
@@ -11,8 +15,6 @@ const ProductCard = () => {
       .then((res) => setProducts(res.data))
       .catch((error) => console.log(error));
   }, [axiosPublic]);
-
-  
 
   return (
     <div className="container mx-auto grid grid-cols-3 gap-4">
@@ -30,7 +32,10 @@ const ProductCard = () => {
               Price: ${product.price.toFixed(2)}
             </span>
             <button
-             
+              onClick={{
+                type: ADD_TO_CART,
+                payload: product,
+              }}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Add to Cart
